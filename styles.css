@@ -1,0 +1,599 @@
+/* ═══════════════════════════════════════════════
+   LUXDRIVE JORDAN — styles.css
+   Tailwind utility overrides + custom components
+════════════════════════════════════════════════ */
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #0f172a; }
+::-webkit-scrollbar-thumb { background: #f59e0b; border-radius: 3px; }
+
+html { scroll-behavior: smooth; }
+
+/* ── Gold gradient text ── */
+.gold-text {
+  background: linear-gradient(135deg, #f59e0b 0%, #fde68a 50%, #d97706 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Hero overlay ── */
+.hero-bg {
+  background: linear-gradient(135deg,
+    rgba(15,23,42,0.96) 0%,
+    rgba(15,23,42,0.80) 45%,
+    rgba(15,23,42,0.92) 100%);
+}
+
+/* ── Navbar scroll state ── */
+.nav-solid {
+  background: rgba(15, 23, 42, 0.98) !important;
+  box-shadow: 0 2px 40px rgba(245, 158, 11, 0.12);
+}
+
+/* ── Card shine sweep ── */
+.card-shine { overflow: hidden; }
+.card-shine::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg,
+    transparent 30%,
+    rgba(245,158,11,0.07) 50%,
+    transparent 70%);
+  transform: translateX(-100%);
+  transition: transform 0.7s ease;
+  pointer-events: none;
+}
+.card-shine:hover::after { transform: translateX(100%); }
+
+/* ── Booking add-on toggle switch ── */
+.tog-track {
+  position: relative;
+  display: inline-block;
+  width: 44px; height: 24px;
+  background: #334155;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: background 0.3s;
+  flex-shrink: 0;
+}
+.tog-track.on { background: #f59e0b; }
+.tog-thumb {
+  position: absolute;
+  top: 3px; left: 3px;
+  width: 18px; height: 18px;
+  background: white;
+  border-radius: 50%;
+  transition: transform 0.3s ease !important;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+}
+.tog-track.on .tog-thumb { transform: translateX(20px); }
+
+/* ── Modal scroll lock ── */
+body.locked { overflow: hidden; }
+
+/* ── Fade-in-up cards ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp 0.55s ease both; }
+
+/* ── Live price flash animation ── */
+@keyframes priceFlash {
+  0%   { color: #fde68a; transform: scale(1.12); }
+  100% { color: #f59e0b; transform: scale(1); }
+}
+.price-flash { animation: priceFlash 0.35s ease forwards; }
+
+/* ── Gold divider line ── */
+.gold-line {
+  height: 1px;
+  background: linear-gradient(to right, transparent, #f59e0b55, transparent);
+}
+
+/* ── Dark selects & date input ── */
+select option { background: #1e293b; color: #f1f5f9; }
+input[type="date"] { color-scheme: dark; }
+
+/* ── Toast notification ── */
+#toast { transition: opacity 0.4s ease, transform 0.4s ease; }
+
+/* ── Feature card hover glow ── */
+.feature-card:hover { box-shadow: 0 8px 40px rgba(245,158,11,0.10); }
+
+/* ── Modal image badge glow ── */
+.badge-glow { box-shadow: 0 0 16px rgba(245,158,11,0.35); }
+
+/* ── Stats separator ── */
+.stat-sep { width: 1px; background: rgba(245,158,11,0.2); }
+
+/* ── Fleet filter buttons ── */
+.filter-btn {
+  padding: 9px 20px;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  border: 1px solid #475569;
+  background: #1e293b;
+  color: #cbd5e1;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.filter-btn:hover {
+  border-color: rgba(245,158,11,0.5);
+  color: #fbbf24;
+}
+.filter-btn.active {
+  background: #f59e0b;
+  border-color: #f59e0b;
+  color: #0f172a;
+  box-shadow: 0 4px 20px rgba(245,158,11,0.30);
+}
+
+/* ── WhatsApp FAB ── */
+#wa-btn:hover span { animation: none; opacity: 0; }
+
+/* ═══════════════════════════════════════════════
+   REVIEWS / TESTIMONIALS
+════════════════════════════════════════════════ */
+.reviews-track {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  padding-bottom: 4px;
+}
+.reviews-track::-webkit-scrollbar { display: none; }
+
+.review-card {
+  scroll-snap-align: start;
+  flex: 0 0 calc(33.333% - 16px);
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  background: rgba(30, 41, 59, 0.7);
+  border: 1px solid rgba(71, 85, 105, 0.5);
+  border-radius: 1.25rem;
+  padding: 1.75rem;
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.review-card::before {
+  content: '"';
+  position: absolute;
+  top: 12px; right: 20px;
+  font-size: 6rem;
+  line-height: 1;
+  font-family: Georgia, serif;
+  color: rgba(245,158,11,0.08);
+  pointer-events: none;
+  user-select: none;
+}
+.review-card:hover {
+  border-color: rgba(245,158,11,0.35);
+  box-shadow: 0 12px 48px rgba(245,158,11,0.08);
+  transform: translateY(-4px);
+}
+
+@media (max-width: 1023px) {
+  .review-card { flex: 0 0 calc(50% - 12px); }
+}
+@media (max-width: 639px) {
+  .review-card { flex: 0 0 calc(100% - 0px); }
+}
+
+/* Dot indicators */
+.rev-dot {
+  width: 8px; height: 8px;
+  border-radius: 9999px;
+  background: rgba(245,158,11,0.25);
+  border: 1px solid rgba(245,158,11,0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.rev-dot.active {
+  width: 24px;
+  background: #f59e0b;
+  border-color: #f59e0b;
+}
+
+/* Nav arrow buttons */
+.rev-arrow {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(245,158,11,0.3);
+  background: rgba(245,158,11,0.06);
+  color: #f59e0b;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  flex-shrink: 0;
+}
+.rev-arrow:hover {
+  background: #f59e0b;
+  border-color: #f59e0b;
+  color: #0f172a;
+  box-shadow: 0 4px 16px rgba(245,158,11,0.35);
+}
+.rev-arrow:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+.rev-arrow:disabled:hover {
+  background: transparent;
+  border-color: rgba(245,158,11,0.3);
+  color: #f59e0b;
+  box-shadow: none;
+}
+
+/* ══════════════════════════════════════════════════
+   THEME TRANSITION — smooth switch on all elements
+══════════════════════════════════════════════════ */
+*, *::before, *::after {
+  transition-property: background-color, border-color, color, box-shadow;
+  transition-duration: 0.35s;
+  transition-timing-function: ease;
+}
+/* Carve-outs: don't inherit on animation/transform-only elements */
+.fade-up, .card-shine::after,
+img, .price-flash { transition: none !important; }
+.tog-thumb { transition: transform 0.3s ease !important; }
+img { transition: transform 0.7s ease !important; }
+
+/* ══════════════════════════════════════════════════
+   LIGHT MODE OVERRIDES  — toggled via html.light
+══════════════════════════════════════════════════ */
+html.light { color-scheme: light; }
+html.light ::-webkit-scrollbar-track { background: #e2e8f0; }
+
+/* Body */
+html.light body { background-color: #f8fafc; color: #0f172a; }
+
+/* ── Navbar ── */
+html.light #navbar {
+  background: rgba(255,255,255,0.90) !important;
+  border-bottom-color: rgba(245,158,11,0.18) !important;
+  box-shadow: 0 1px 20px rgba(0,0,0,0.07);
+}
+html.light .nav-solid {
+  background: rgba(255,255,255,0.98) !important;
+  box-shadow: 0 2px 28px rgba(0,0,0,0.09) !important;
+}
+html.light #navbar .text-slate-300 { color: #475569 !important; }
+html.light #navbar a.text-slate-300 { color: #475569 !important; }
+html.light #mob-menu {
+  background: rgba(255,255,255,0.99) !important;
+  border-top-color: rgba(245,158,11,0.15) !important;
+}
+html.light #mob-menu a { color: #475569 !important; }
+
+/* ── Theme toggle button ── */
+html.light #theme-toggle {
+  background: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+  color: #475569 !important;
+}
+html.light #theme-toggle:hover {
+  background: #fef3c7 !important;
+  border-color: #f59e0b !important;
+  color: #d97706 !important;
+}
+
+/* ── Hero ── */
+html.light .hero-bg {
+  background: linear-gradient(135deg,
+    rgba(248,250,252,0.95) 0%,
+    rgba(241,245,249,0.82) 45%,
+    rgba(248,250,252,0.93) 100%);
+}
+html.light #hero .text-white  { color: #0f172a !important; }
+html.light #hero .text-slate-300 { color: #475569 !important; }
+html.light #hero .text-slate-400 { color: #64748b !important; }
+html.light #hero .text-slate-500 { color: #94a3b8 !important; }
+html.light #hero .backdrop-blur-xl {
+  background: rgba(255,255,255,0.94) !important;
+  border-color: rgba(245,158,11,0.22) !important;
+  box-shadow: 0 8px 48px rgba(0,0,0,0.10) !important;
+}
+html.light #hero select,
+html.light #hero input[type="date"] {
+  background: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+html.light #hero select:hover,
+html.light #hero input[type="date"]:hover { border-color: rgba(245,158,11,0.55) !important; }
+html.light input[type="date"] { color-scheme: light; }
+html.light select option { background: #ffffff !important; color: #0f172a !important; }
+html.light #hero a[href="#fleet"] { color: rgba(180,83,9,0.45) !important; }
+
+/* ── Fleet ── */
+html.light #fleet { background-color: #f8fafc; }
+html.light #fleet .text-white  { color: #0f172a !important; }
+html.light #fleet .text-slate-400 { color: #64748b !important; }
+html.light .filter-btn {
+  background: #ffffff !important; border-color: #cbd5e1 !important; color: #475569 !important;
+}
+html.light .filter-btn:hover { border-color: rgba(245,158,11,0.55) !important; color: #d97706 !important; }
+html.light .filter-btn.active {
+  background: #f59e0b !important; border-color: #f59e0b !important;
+  color: #0f172a !important; box-shadow: 0 4px 18px rgba(245,158,11,0.28) !important;
+}
+html.light #cars-grid article {
+  background: #ffffff !important; border-color: #e2e8f0 !important;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+}
+html.light #cars-grid article:hover {
+  border-color: rgba(245,158,11,0.40) !important;
+  box-shadow: 0 18px 50px rgba(0,0,0,0.10) !important;
+}
+html.light #cars-grid .text-white  { color: #0f172a !important; }
+html.light #cars-grid .text-slate-400 { color: #64748b !important; }
+html.light #cars-grid .text-slate-300 { color: #475569 !important; }
+html.light #cars-grid .text-slate-500 { color: #94a3b8 !important; }
+html.light #cars-grid span[class*="bg-slate-7"] {
+  background: #f1f5f9 !important; border-color: #e2e8f0 !important; color: #475569 !important;
+}
+html.light #cars-grid [class*="border-slate-7"] { border-color: #e2e8f0 !important; }
+html.light #cars-grid [class*="border-slate-6"] { border-color: #e2e8f0 !important; }
+
+/* ── Features ── */
+html.light #features { background-color: #f1f5f9 !important; }
+html.light #features .text-white  { color: #0f172a !important; }
+html.light #features .text-slate-400 { color: #64748b !important; }
+html.light .feature-card { background: #ffffff !important; border-color: #e2e8f0 !important; }
+html.light .feature-card:hover {
+  border-color: rgba(245,158,11,0.4) !important;
+  box-shadow: 0 8px 36px rgba(0,0,0,0.08) !important;
+}
+html.light .feature-card h3 { color: #0f172a !important; }
+html.light .feature-card p  { color: #64748b !important; }
+html.light #features .gold-line { opacity: 0.5; }
+
+/* ── Reviews ── */
+html.light #reviews { background-color: #f8fafc; }
+html.light #reviews .text-white  { color: #0f172a !important; }
+html.light #reviews .text-slate-400 { color: #64748b !important; }
+html.light #reviews .text-slate-300 { color: #475569 !important; }
+html.light .review-card {
+  background: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+}
+html.light .review-card::before { color: rgba(245,158,11,0.12); }
+html.light .review-card:hover {
+  border-color: rgba(245,158,11,0.40) !important;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.09) !important;
+}
+html.light .review-card [class*="border-slate-7"] { border-color: #e2e8f0 !important; }
+html.light .rev-dot { background: rgba(245,158,11,0.15); border-color: rgba(245,158,11,0.25); }
+html.light .rev-dot.active { background: #f59e0b; border-color: #f59e0b; }
+html.light .rev-arrow {
+  background: rgba(245,158,11,0.05);
+  border-color: rgba(245,158,11,0.25);
+}
+
+/* ── Modal ── */
+html.light #modal > div:last-child {
+  background: #ffffff !important;
+  border-color: rgba(245,158,11,0.18) !important;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.15) !important;
+}
+html.light #modal .sticky {
+  background: rgba(255,255,255,0.97) !important;
+  border-bottom-color: #e2e8f0 !important;
+}
+html.light #modal .text-white  { color: #0f172a !important; }
+html.light #modal .text-slate-200 { color: #1e293b !important; }
+html.light #modal .text-slate-300 { color: #475569 !important; }
+html.light #modal .text-slate-400 { color: #64748b !important; }
+html.light #modal .text-slate-500 { color: #94a3b8 !important; }
+html.light #modal [class*="bg-slate-8"] { background: #f1f5f9 !important; }
+html.light #modal .addon-row { background: #f8fafc !important; border-color: #e2e8f0 !important; }
+html.light #modal [class*="bg-slate-7"] { background: #e2e8f0 !important; }
+html.light #modal [class*="border-slate-7"] { border-color: #e2e8f0 !important; }
+html.light #modal [class*="border-slate-6"] { border-color: #e2e8f0 !important; }
+html.light #modal [class*="from-amber-500"] {
+  background: linear-gradient(to bottom right,
+    rgba(245,158,11,0.07), rgba(180,83,9,0.03)) !important;
+  border-color: rgba(245,158,11,0.22) !important;
+}
+html.light #modal button.bg-slate-800,
+html.light #modal button[class*="bg-slate-8"] {
+  background: #f1f5f9 !important; color: #475569 !important;
+}
+html.light #modal button.bg-slate-800:hover,
+html.light #modal button[class*="bg-slate-8"]:hover {
+  background: #e2e8f0 !important; color: #0f172a !important;
+}
+html.light .tog-track          { background: #94a3b8 !important; }
+html.light .tog-track.on       { background: #f59e0b !important; }
+
+/* ── WhatsApp tooltip light mode ── */
+html.light #wa-tooltip {
+  background: #fff; color: #1e293b; border-color: #e2e8f0;
+}
+html.light #wa-tooltip span { background: #fff; border-color: #e2e8f0; }
+
+/* ══════════════════════════════════════════════
+   AVAILABILITY CALENDAR
+══════════════════════════════════════════════ */
+.cal-nav {
+  width: 28px; height: 28px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(245,158,11,0.1);
+  border: 1px solid rgba(245,158,11,0.25);
+  border-radius: 8px;
+  color: #f59e0b;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.15s;
+  flex-shrink: 0;
+}
+.cal-nav:hover {
+  background: rgba(245,158,11,0.2);
+  border-color: rgba(245,158,11,0.5);
+  transform: scale(1.08);
+}
+.cal-nav:active { transform: scale(0.94); }
+
+.cal-day-header {
+  text-align: center;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #94a3b8;
+  padding: 4px 0;
+  user-select: none;
+}
+
+.cal-day {
+  aspect-ratio: 1;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background 0.18s, border-color 0.18s, color 0.18s, transform 0.13s;
+  user-select: none;
+  color: #cbd5e1;
+  min-width: 0;
+}
+.cal-day:hover {
+  background: rgba(245,158,11,0.15);
+  border-color: rgba(245,158,11,0.35);
+  color: #fbbf24;
+  transform: scale(1.07);
+}
+
+.cal-empty { cursor: default; pointer-events: none; }
+.cal-empty:hover { background: none; border-color: transparent; transform: none; }
+
+.cal-past {
+  color: #334155;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.cal-today {
+  border-color: rgba(245,158,11,0.45);
+  color: #fbbf24;
+  font-weight: 800;
+}
+
+.cal-reserved {
+  background: rgba(239,68,68,0.15);
+  border-color: rgba(239,68,68,0.3);
+  color: #f87171;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.cal-reserved:hover { background: rgba(239,68,68,0.15); border-color: rgba(239,68,68,0.3); color: #f87171; transform: none; }
+
+.cal-selected {
+  background: #f59e0b !important;
+  border-color: #f59e0b !important;
+  color: #0f172a !important;
+  font-weight: 800;
+  box-shadow: 0 0 10px rgba(245,158,11,0.45);
+}
+.cal-selected:hover { transform: scale(1.07); }
+
+/* ══════════════════════════════════════════════
+   CLASSIC CARS SECTION
+══════════════════════════════════════════════ */
+
+/* Sepia-warm overlay on classic car images */
+.classic-overlay {
+  background: linear-gradient(
+    160deg,
+    rgba(120, 80, 20, 0.22) 0%,
+    rgba(15, 23, 42, 0.18) 60%,
+    rgba(15, 23, 42, 0.55) 100%
+  );
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+/* Slight warm tint on the image itself */
+.classic-img {
+  filter: sepia(18%) contrast(1.05) saturate(0.9);
+  transition: filter 0.6s ease, transform 0.7s ease;
+}
+.classic-card:hover .classic-img {
+  filter: sepia(8%) contrast(1.08) saturate(1.05);
+}
+
+/* Light mode — Classic section */
+html.light #classics { background-color: #f1f5f9; }
+html.light #classics .text-white  { color: #0f172a !important; }
+html.light #classics .text-slate-400 { color: #64748b !important; }
+html.light #classics .text-slate-500 { color: #94a3b8 !important; }
+html.light #classics .text-slate-600 { color: #94a3b8 !important; }
+html.light .classic-card {
+  background: #ffffff !important;
+  border-color: rgba(245,158,11,0.2) !important;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+}
+html.light .classic-card:hover {
+  border-color: rgba(245,158,11,0.45) !important;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.10) !important;
+}
+html.light .classic-card [class*="border-slate-8"] { border-color: #e2e8f0 !important; }
+html.light .classic-card .text-slate-400 { color: #475569 !important; }
+html.light .classic-card .text-slate-500 { color: #94a3b8 !important; }
+
+/* ── Back-to-top transition ── */
+#back-to-top {
+  transition: opacity 0.35s ease, transform 0.35s ease,
+              background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* ══════════════════════════════════════════════
+   LIGHT MODE — Calendar & Back-to-top
+══════════════════════════════════════════════ */
+html.light .cal-container { background: #f1f5f9 !important; border-color: #e2e8f0 !important; }
+
+html.light .cal-nav {
+  background: rgba(245,158,11,0.08);
+  border-color: rgba(245,158,11,0.2);
+}
+html.light .cal-nav:hover {
+  background: rgba(245,158,11,0.18);
+  border-color: rgba(245,158,11,0.4);
+}
+
+html.light .cal-day-header { color: #64748b; }
+
+html.light .cal-day { color: #1e293b; }
+html.light .cal-day:hover {
+  background: rgba(245,158,11,0.12);
+  color: #b45309;
+}
+
+html.light .cal-past { color: #cbd5e1; }
+
+html.light .cal-today { border-color: rgba(245,158,11,0.5); color: #d97706; }
+
+html.light .cal-reserved {
+  background: rgba(239,68,68,0.08);
+  border-color: rgba(239,68,68,0.25);
+  color: #dc2626;
+}
+
+html.light .cal-selected {
+  background: #f59e0b !important;
+  color: #0f172a !important;
+}
+
+html.light #back-to-top {
+  box-shadow: 0 4px 20px rgba(245,158,11,0.35);
+}

@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="LuxDrive Jordan — Amman's premier luxury and wedding car rental. Book Rolls-Royce, Bentley, Mercedes, BMW, Range Rover, and classic cars for weddings, events, and special occasions in Jordan." />
+  <meta name="author" content="LuxDrive Jordan" />
+  <meta name="theme-color" content="#f59e0b" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="LuxDrive Jordan — Luxury &amp; Wedding Car Rental" />
+  <meta property="og:description" content="Amman's premier luxury and wedding car rental. Premium fleet of Rolls-Royce, Bentley, BMW, Mercedes, Range Rover and classic cars for your most important occasions." />
+  <meta property="og:image" content="assets/images/2025-rolls-royce-black-badge-ghost.jpg" />
+  <link rel="icon" type="image/png" href="assets/images/logo-icon.png" />
+  <title>LuxDrive Jordan — Luxury &amp; Wedding Car Rental</title>
+
+  <!-- Tailwind CDN (config must be before the CDN script) -->
+  <script>
+    window.tailwind = window.tailwind || {};
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: { 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706' }
+          },
+          transitionDuration: { 400: '400ms' }
+        }
+      }
+    };
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-slate-900 text-slate-100 antialiased font-sans">
+
+
+<!-- ═══════════════════════════════════════════════
+     NAVIGATION
+════════════════════════════════════════════════ -->
+<nav id="navbar"
+     class="fixed top-0 inset-x-0 z-50 transition-all duration-500 bg-slate-900/70 backdrop-blur-xl border-b border-amber-500/10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 md:h-[72px]">
+
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 bg-amber-500 rounded-xl flex items-center justify-center
+                    shadow-lg shadow-amber-500/30 group-hover:scale-105 transition-transform duration-300">
+          <img src="assets/images/logo-icon.png" alt="LuxDrive Jordan Logo" class="w-6 h-6 object-contain">
+        </div>
+        <div class="leading-tight">
+          <p class="text-[17px] font-bold tracking-tight">
+            <span class="gold-text">LuxDrive</span><span class="text-slate-300 font-light"> Jordan</span>
+          </p>
+        </div>
+      </a>
+
+      <!-- Desktop links -->
+      <div class="hidden md:flex items-center gap-7">
+        <a href="#fleet"    class="text-slate-300 hover:text-amber-400 text-sm font-medium tracking-wide transition-colors duration-200">Fleet</a>
+        <a href="#classics" class="text-slate-300 hover:text-amber-400 text-sm font-medium tracking-wide transition-colors duration-200">Classics</a>
+        <a href="#features" class="text-slate-300 hover:text-amber-400 text-sm font-medium tracking-wide transition-colors duration-200">Why Us</a>
+        <a href="#reviews"  class="text-slate-300 hover:text-amber-400 text-sm font-medium tracking-wide transition-colors duration-200">Reviews</a>
+        <a href="#contact"  class="text-slate-300 hover:text-amber-400 text-sm font-medium tracking-wide transition-colors duration-200">Contact</a>
+
+        <!-- Theme toggle -->
+        <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme"
+                class="w-9 h-9 bg-slate-800 hover:bg-amber-500 border border-slate-700 hover:border-amber-500
+                       rounded-xl flex items-center justify-center group">
+          <i id="theme-icon" class="fa-solid fa-sun text-amber-400 group-hover:text-slate-900 text-sm"></i>
+        </button>
+
+        <a href="#fleet"
+           class="bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold px-6 py-2.5 rounded-xl text-sm
+                  tracking-wide transition-all duration-300 hover:shadow-lg hover:shadow-amber-500/30 hover:-translate-y-px">
+          <i class="fa-solid fa-calendar-check mr-1.5"></i>Book Now
+        </a>
+      </div>
+
+      <!-- Mobile top-right controls -->
+      <div class="flex md:hidden items-center gap-2">
+        <!-- Theme toggle -->
+        <button onclick="toggleTheme()" aria-label="Toggle theme"
+                class="w-9 h-9 bg-slate-800 hover:bg-amber-500 border border-slate-700 hover:border-amber-500
+                       rounded-xl flex items-center justify-center group">
+          <i id="theme-icon-mob" class="fa-solid fa-sun text-amber-400 group-hover:text-slate-900 text-sm"></i>
+        </button>
+        <!-- Hamburger -->
+        <button id="mob-btn" class="p-2 text-slate-300 hover:text-amber-400 transition-colors">
+          <i class="fa-solid fa-bars text-xl" id="mob-icon"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile drawer -->
+  <div id="mob-menu" class="hidden md:hidden border-t border-amber-500/10 bg-slate-950/98 px-5 py-5">
+    <div class="flex flex-col gap-4">
+      <a href="#fleet"    class="text-slate-300 hover:text-amber-400 py-1 text-sm font-medium" onclick="closeMobMenu()">Our Fleet</a>
+      <a href="#classics" class="text-slate-300 hover:text-amber-400 py-1 text-sm font-medium" onclick="closeMobMenu()">Classic Cars</a>
+      <a href="#features" class="text-slate-300 hover:text-amber-400 py-1 text-sm font-medium" onclick="closeMobMenu()">Why Us</a>
+      <a href="#reviews"  class="text-slate-300 hover:text-amber-400 py-1 text-sm font-medium" onclick="closeMobMenu()">Reviews</a>
+      <a href="#contact"  class="text-slate-300 hover:text-amber-400 py-1 text-sm font-medium" onclick="closeMobMenu()">Contact</a>
+      <a href="#fleet"
+         class="bg-amber-500 text-slate-900 font-bold py-3 rounded-xl text-sm text-center mt-1" onclick="closeMobMenu()">
+        <i class="fa-solid fa-calendar-check mr-1.5"></i>Book Now
+      </a>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<!-- ═══════════════════════════════════════════════
+     HERO SECTION
+════════════════════════════════════════════════ -->
+<section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+
+  <!-- Background image -->
+  <div class="absolute inset-0 z-0">
+    <img src="assets/images/2025-rolls-royce-black-badge-ghost.jpg"
+         alt="Luxury car backdrop"
+         class="w-full h-full object-cover object-center"
+         onerror="this.style.display='none'">
+    <div class="hero-bg absolute inset-0"></div>
+  </div>
+
+  <!-- Ambient orbs -->
+  <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-amber-600/5 rounded-full blur-3xl pointer-events-none"></div>
+
+  <!-- Content -->
+  <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
+    <div class="text-center mb-12 md:mb-14">
+
+      <div class="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/30 backdrop-blur-sm
+                  text-amber-400 text-[10px] tracking-[0.2em] uppercase px-4 py-2 rounded-full mb-7">
+        <i class="fa-solid fa-crown text-amber-500"></i>
+        Jordan's Premier Luxury Car Rental
+      </div>
+
+      <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-[76px] font-black leading-[1.05] tracking-tight">
+        <span class="text-white">Your Perfect</span><br>
+        <span class="gold-text">Special Day</span><br>
+        <span class="text-white">Deserves </span><span class="text-amber-400">Perfection</span>
+      </h1>
+
+      <p class="mt-6 text-slate-300 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed">
+        Curated fleet of elite cars for Amman's most discerning events.
+        <span class="text-amber-400/90 font-medium">Unforgettable moments, flawlessly delivered.</span>
+      </p>
+
+      <!-- Stats -->
+      <div class="flex flex-wrap justify-center items-center gap-8 sm:gap-14 mt-10 mb-12">
+        <div class="text-center">
+          <p class="text-3xl font-black text-amber-400">200<span class="text-amber-500">+</span></p>
+          <p class="text-[10px] text-slate-400 uppercase tracking-[0.18em] mt-1">Happy Couples</p>
+        </div>
+        <div class="stat-sep h-10 hidden sm:block"></div>
+        <div class="text-center">
+          <p class="text-3xl font-black text-amber-400">15<span class="text-amber-500">+</span></p>
+          <p class="text-[10px] text-slate-400 uppercase tracking-[0.18em] mt-1">Premium Cars</p>
+        </div>
+        <div class="stat-sep h-10 hidden sm:block"></div>
+        <div class="text-center">
+          <p class="text-3xl font-black text-amber-400">5<i class="fa-solid fa-star text-2xl ml-0.5"></i></p>
+          <p class="text-[10px] text-slate-400 uppercase tracking-[0.18em] mt-1">Rated Service</p>
+        </div>
+        <div class="stat-sep h-10 hidden sm:block"></div>
+        <div class="text-center">
+          <p class="text-3xl font-black text-amber-400">7<span class="text-amber-500">yr</span></p>
+          <p class="text-[10px] text-slate-400 uppercase tracking-[0.18em] mt-1">In Business</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Search bar -->
+    <div class="max-w-4xl mx-auto">
+      <div class="bg-slate-900/80 backdrop-blur-xl border border-amber-500/20 rounded-2xl p-5 sm:p-7
+                  shadow-[0_8px_60px_rgba(0,0,0,0.5)]">
+        <p class="text-center text-[10px] text-amber-400 uppercase tracking-[0.22em] font-semibold mb-5">
+          Find Your Dream Car
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+
+          <div class="relative">
+            <label class="flex items-center gap-1.5 text-[10px] text-slate-400 uppercase tracking-widest font-semibold mb-2">
+              <i class="fa-solid fa-car text-amber-500"></i> Car Type
+            </label>
+            <select id="hero-type"
+                    class="w-full bg-slate-800 border border-slate-600/60 hover:border-amber-500/60
+                           focus:border-amber-500 text-slate-200 rounded-xl px-4 py-3 text-sm
+                           outline-none transition-all duration-200 cursor-pointer appearance-none">
+              <option value="all">All Categories</option>
+              <option value="wedding">Wedding</option>
+              <option value="luxury">Luxury</option>
+              <option value="sport">Sport</option>
+              <option value="suv">SUV</option>
+              <option value="classic">Classic</option>
+            </select>
+            <i class="fa-solid fa-chevron-down absolute right-3.5 bottom-3.5 text-amber-500/50 text-xs pointer-events-none"></i>
+          </div>
+
+          <div>
+            <label class="flex items-center gap-1.5 text-[10px] text-slate-400 uppercase tracking-widest font-semibold mb-2">
+              <i class="fa-solid fa-calendar text-amber-500"></i> Event Date
+            </label>
+            <input type="date" id="hero-date"
+                   class="w-full bg-slate-800 border border-slate-600/60 hover:border-amber-500/60
+                          focus:border-amber-500 text-slate-200 rounded-xl px-4 py-3 text-sm
+                          outline-none transition-all duration-200 cursor-pointer">
+          </div>
+
+          <div class="relative">
+            <label class="flex items-center gap-1.5 text-[10px] text-slate-400 uppercase tracking-widest font-semibold mb-2">
+              <i class="fa-solid fa-user-tie text-amber-500"></i> Driver Option
+            </label>
+            <select id="hero-driver"
+                    class="w-full bg-slate-800 border border-slate-600/60 hover:border-amber-500/60
+                           focus:border-amber-500 text-slate-200 rounded-xl px-4 py-3 text-sm
+                           outline-none transition-all duration-200 cursor-pointer appearance-none">
+              <option value="no">Without Driver</option>
+              <option value="yes">With Chauffeur (+30 JOD)</option>
+            </select>
+            <i class="fa-solid fa-chevron-down absolute right-3.5 bottom-3.5 text-amber-500/50 text-xs pointer-events-none"></i>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-3 mt-5">
+          <button onclick="heroSearch()"
+                  class="flex-1 bg-amber-500 hover:bg-amber-400 text-slate-900 font-black py-3.5 rounded-xl text-sm
+                         tracking-wide transition-all duration-300 hover:shadow-xl hover:shadow-amber-500/30 hover:-translate-y-0.5">
+            <i class="fa-solid fa-magnifying-glass mr-2"></i>Search Available Cars
+          </button>
+          <button onclick="scrollFleet()"
+                  class="sm:flex-none border border-amber-500/40 hover:border-amber-500 text-amber-400
+                         hover:bg-amber-500/10 font-semibold py-3.5 px-6 rounded-xl text-sm
+                         tracking-wide transition-all duration-300">
+            <i class="fa-solid fa-table-cells-large mr-2"></i>View Full Fleet
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll cue -->
+    <div class="flex justify-center mt-12">
+      <a href="#fleet" class="flex flex-col items-center gap-2 text-amber-500/40 hover:text-amber-400 transition-colors group">
+        <span class="text-[9px] uppercase tracking-[0.2em] font-semibold">Explore Fleet</span>
+        <i class="fa-solid fa-chevron-down animate-bounce text-lg"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     FLEET SHOWCASE
+════════════════════════════════════════════════ -->
+<section id="fleet" class="py-24 lg:py-32 bg-slate-900">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center mb-14">
+      <div class="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/20
+                  text-amber-400 text-[10px] tracking-[0.2em] uppercase px-4 py-2 rounded-full mb-4">
+        <i class="fa-solid fa-star"></i> Premium Fleet
+      </div>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-4">
+        Choose Your <span class="gold-text">Statement Car</span>
+      </h2>
+      <p class="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto">
+        Every vehicle is meticulously maintained and presented to the highest standard
+        for your most important occasions.
+      </p>
+    </div>
+
+    <!-- Filter buttons -->
+    <div id="filter-wrap" class="flex flex-wrap justify-center gap-3 mb-12">
+      <button class="filter-btn" data-filter="all"><i class="fa-solid fa-table-cells-large mr-1.5"></i>All Cars</button>
+      <button class="filter-btn" data-filter="wedding"><i class="fa-solid fa-rings-wedding mr-1.5"></i>Wedding</button>
+      <button class="filter-btn" data-filter="luxury"><i class="fa-solid fa-crown mr-1.5"></i>Luxury</button>
+      <button class="filter-btn" data-filter="sport"><i class="fa-solid fa-bolt mr-1.5"></i>Sport</button>
+      <button class="filter-btn" data-filter="suv"><i class="fa-solid fa-truck-monster mr-1.5"></i>SUV</button>
+      <button class="filter-btn" data-filter="classic"><i class="fa-solid fa-star mr-1.5"></i>Classic</button>
+    </div>
+
+    <!-- Grid (populated by JS) -->
+    <div id="cars-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"></div>
+
+    <!-- Empty state -->
+    <div id="no-results" class="hidden text-center py-20">
+      <i class="fa-solid fa-car-burst text-5xl text-slate-700 mb-5"></i>
+      <p class="text-slate-400 text-lg">No cars found in this category.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     CLASSIC CARS
+════════════════════════════════════════════════ -->
+<section id="classics" class="py-24 lg:py-32 bg-slate-950 relative overflow-hidden">
+
+  <!-- Decorative background glows -->
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-amber-500/25 to-transparent"></div>
+    <div class="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-amber-500/25 to-transparent"></div>
+    <div class="absolute -left-60 top-1/4 w-[600px] h-[600px] bg-amber-500/[0.03] rounded-full blur-3xl"></div>
+    <div class="absolute -right-60 bottom-1/4 w-[500px] h-[500px] bg-amber-600/[0.03] rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+
+    <!-- Section header -->
+    <div class="text-center mb-16 fade-up">
+      <div class="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/20 rounded-full px-4 py-1.5 mb-5">
+        <i class="fa-solid fa-gem text-amber-400 text-xs"></i>
+        <span class="text-amber-400 text-xs font-bold uppercase tracking-[0.2em]">Heritage Collection</span>
+      </div>
+      <h2 class="text-4xl md:text-5xl font-black mb-4">
+        <span class="gold-text">Classic</span>
+        <span class="text-white"> Cars</span>
+      </h2>
+      <div class="gold-line mx-auto mb-5"></div>
+      <p class="text-slate-400 text-base max-w-xl mx-auto leading-relaxed">
+        Timeless icons meticulously restored — perfect for weddings, photoshoots, engagement sessions, and unforgettable drives through Jordan.
+      </p>
+    </div>
+
+    <!-- Classic cars grid (populated by JS) -->
+    <div id="classics-grid" class="grid grid-cols-1 md:grid-cols-3 gap-7"></div>
+
+    <!-- Bottom note -->
+    <p class="text-center text-slate-600 text-xs mt-10 tracking-wide">
+      <i class="fa-solid fa-circle-info text-amber-500/40 mr-1.5"></i>
+      All classic vehicles are fully restored, road-legal, and available with optional vintage-themed decoration.
+    </p>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     WHY CHOOSE US
+════════════════════════════════════════════════ -->
+<section id="features" class="py-24 lg:py-32 relative overflow-hidden bg-slate-800/40">
+  <div class="gold-line absolute top-0 inset-x-0"></div>
+  <div class="gold-line absolute bottom-0 inset-x-0"></div>
+  <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-amber-500/4 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="text-center mb-14">
+      <div class="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/20
+                  text-amber-400 text-[10px] tracking-[0.2em] uppercase px-4 py-2 rounded-full mb-4">
+        <i class="fa-solid fa-shield-check"></i> Our Promise
+      </div>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-4">
+        Why <span class="gold-text">LuxDrive Jordan?</span>
+      </h2>
+      <p class="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto">
+        We don't just rent cars — we craft the experience that matches the grandeur of your occasion.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+
+      <div class="feature-card group bg-slate-900/80 border border-slate-700/50 hover:border-amber-500/40 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1.5">
+        <div class="w-14 h-14 bg-amber-500/10 border border-amber-500/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-amber-500/20 transition-all duration-300">
+          <i class="fa-solid fa-spray-can-sparkles text-amber-400 text-2xl"></i>
+        </div>
+        <h3 class="text-white font-bold text-xl mb-3">Pristine &amp; Sanitized</h3>
+        <p class="text-slate-400 leading-relaxed text-sm">Rigorous cleaning, sanitization, and full inspection before every rental. Guaranteed showroom condition on arrival.</p>
+      </div>
+
+      <div class="feature-card group bg-slate-900/80 border border-slate-700/50 hover:border-amber-500/40 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1.5">
+        <div class="w-14 h-14 bg-amber-500/10 border border-amber-500/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-amber-500/20 transition-all duration-300">
+          <i class="fa-solid fa-headset text-amber-400 text-2xl"></i>
+        </div>
+        <h3 class="text-white font-bold text-xl mb-3">24 / 7 Concierge</h3>
+        <p class="text-slate-400 leading-relaxed text-sm">Round-the-clock support via WhatsApp and phone. Your peace of mind is our highest priority.</p>
+      </div>
+
+      <div class="feature-card group bg-slate-900/80 border border-slate-700/50 hover:border-amber-500/40 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1.5">
+        <div class="w-14 h-14 bg-amber-500/10 border border-amber-500/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-amber-500/20 transition-all duration-300">
+          <i class="fa-solid fa-user-tie text-amber-400 text-2xl"></i>
+        </div>
+        <h3 class="text-white font-bold text-xl mb-3">Professional Chauffeurs</h3>
+        <p class="text-slate-400 leading-relaxed text-sm">Punctual, uniformed, and trained drivers who truly understand the importance of your special day.</p>
+      </div>
+
+      <div class="feature-card group bg-slate-900/80 border border-slate-700/50 hover:border-amber-500/40 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1.5">
+        <div class="w-14 h-14 bg-amber-500/10 border border-amber-500/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-amber-500/20 transition-all duration-300">
+          <i class="fa-solid fa-wand-magic-sparkles text-amber-400 text-2xl"></i>
+        </div>
+        <h3 class="text-white font-bold text-xl mb-3">Premium Decoration</h3>
+        <p class="text-slate-400 leading-relaxed text-sm">Bespoke floral arrangements and ribbon setups tailored to your exact wedding theme and color palette.</p>
+      </div>
+
+      <div class="feature-card group bg-slate-900/80 border border-slate-700/50 hover:border-amber-500/40 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1.5">
+        <div class="w-14 h-14 bg-amber-500/10 border border-amber-500/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-amber-500/20 transition-all duration-300">
+          <i class="fa-solid fa-shield-halved text-amber-400 text-2xl"></i>
+        </div>
+        <h3 class="text-white font-bold text-xl mb-3">Fully Insured Fleet</h3>
+        <p class="text-slate-400 leading-relaxed text-sm">Every vehicle carries comprehensive insurance. Drive with complete confidence and zero worry.</p>
+      </div>
+
+      <div class="feature-card group bg-slate-900/80 border border-slate-700/50 hover:border-amber-500/40 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1.5">
+        <div class="w-14 h-14 bg-amber-500/10 border border-amber-500/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-amber-500/20 transition-all duration-300">
+          <i class="fa-solid fa-route text-amber-400 text-2xl"></i>
+        </div>
+        <h3 class="text-white font-bold text-xl mb-3">Flexible Itineraries</h3>
+        <p class="text-slate-400 leading-relaxed text-sm">Hourly, half-day, or full-day rentals. We accommodate your schedule, not the other way around.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     REVIEWS / TESTIMONIALS
+════════════════════════════════════════════════ -->
+<section id="reviews" class="py-24 lg:py-32 bg-slate-900 overflow-hidden">
+  <div class="gold-line absolute inset-x-0"></div>
+
+  <!-- Ambient glow -->
+  <div class="absolute left-0 top-1/2 -translate-y-1/2 w-96 h-96 bg-amber-500/4 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute right-0 top-1/3 w-72 h-72 bg-amber-600/4 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+    <!-- Header -->
+    <div class="text-center mb-14">
+      <div class="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/20
+                  text-amber-400 text-[10px] tracking-[0.2em] uppercase px-4 py-2 rounded-full mb-4">
+        <i class="fa-solid fa-quote-left"></i> Client Stories
+      </div>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-4">
+        What Our Clients <span class="gold-text">Say</span>
+      </h2>
+      <p class="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto">
+        Real experiences from real couples, executives, and families who trusted
+        LuxDrive Jordan with their most important moments.
+      </p>
+
+      <!-- Overall rating bar -->
+      <div class="inline-flex items-center gap-3 mt-6 bg-slate-800/60 border border-slate-700/50
+                  px-5 py-3 rounded-2xl">
+        <div class="flex gap-1">
+          <i class="fa-solid fa-star text-amber-400 text-sm"></i>
+          <i class="fa-solid fa-star text-amber-400 text-sm"></i>
+          <i class="fa-solid fa-star text-amber-400 text-sm"></i>
+          <i class="fa-solid fa-star text-amber-400 text-sm"></i>
+          <i class="fa-solid fa-star text-amber-400 text-sm"></i>
+        </div>
+        <span class="text-white font-black text-lg">5.0</span>
+        <span class="text-slate-400 text-sm">·</span>
+        <span class="text-slate-400 text-sm">Based on <span class="text-amber-400 font-semibold">200+</span> reviews</span>
+      </div>
+    </div>
+
+    <!-- Carousel -->
+    <div class="relative">
+      <!-- Track (populated by JS) -->
+      <div id="reviews-track" class="reviews-track"></div>
+
+      <!-- Controls -->
+      <div class="flex items-center justify-center gap-5 mt-10">
+        <button id="rev-prev" class="rev-arrow" aria-label="Previous review">
+          <i class="fa-solid fa-chevron-left text-sm"></i>
+        </button>
+
+        <div id="rev-dots" class="flex items-center gap-2"></div>
+
+        <button id="rev-next" class="rev-arrow" aria-label="Next review">
+          <i class="fa-solid fa-chevron-right text-sm"></i>
+        </button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+</main>
+
+<!-- ═══════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════ -->
+<footer id="contact" class="bg-slate-950 border-t border-amber-500/10 pt-16 pb-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+
+      <!-- Brand -->
+      <div class="lg:col-span-2">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-10 h-10 bg-amber-500 rounded-xl flex items-center justify-center shadow-lg shadow-amber-500/30">
+            <i class="fa-solid fa-car-side text-slate-900"></i>
+          </div>
+          <div>
+            <p class="text-lg font-bold"><span class="gold-text">LuxDrive</span> <span class="text-slate-300 font-light">Jordan</span></p>
+            <p class="text-[9px] tracking-[0.2em] text-amber-500/60 uppercase">Luxury &amp; Wedding Cars</p>
+          </div>
+        </div>
+        <p class="text-slate-400 text-sm leading-relaxed mb-6 max-w-sm">
+          Amman's premier luxury and wedding car rental service.
+          Creating unforgettable memories since 2018.
+        </p>
+        <div class="flex gap-2.5">
+          <a href="#" aria-label="Instagram"
+             class="w-10 h-10 bg-slate-800 hover:bg-amber-500 border border-slate-700 hover:border-amber-500 rounded-xl flex items-center justify-center transition-all duration-300 group">
+            <i class="fa-brands fa-instagram text-slate-400 group-hover:text-slate-900 transition-colors text-sm"></i>
+          </a>
+          <a href="#" aria-label="Facebook"
+             class="w-10 h-10 bg-slate-800 hover:bg-amber-500 border border-slate-700 hover:border-amber-500 rounded-xl flex items-center justify-center transition-all duration-300 group">
+            <i class="fa-brands fa-facebook-f text-slate-400 group-hover:text-slate-900 transition-colors text-sm"></i>
+          </a>
+          <a href="#" aria-label="TikTok"
+             class="w-10 h-10 bg-slate-800 hover:bg-amber-500 border border-slate-700 hover:border-amber-500 rounded-xl flex items-center justify-center transition-all duration-300 group">
+            <i class="fa-brands fa-tiktok text-slate-400 group-hover:text-slate-900 transition-colors text-sm"></i>
+          </a>
+          <a href="https://wa.me/96279XXXXXXX" aria-label="WhatsApp"
+             class="w-10 h-10 bg-slate-800 hover:bg-green-500 border border-slate-700 hover:border-green-500 rounded-xl flex items-center justify-center transition-all duration-300 group">
+            <i class="fa-brands fa-whatsapp text-slate-400 group-hover:text-slate-900 transition-colors text-sm"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h4 class="text-white font-bold text-[10px] uppercase tracking-[0.2em] mb-5">Quick Links</h4>
+        <ul class="space-y-3">
+          <li><a href="#fleet"    class="text-slate-400 hover:text-amber-400 transition-colors text-sm flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[9px] text-amber-500/40"></i>Our Fleet</a></li>
+          <li><a href="#classics" class="text-slate-400 hover:text-amber-400 transition-colors text-sm flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[9px] text-amber-500/40"></i>Classic Cars</a></li>
+          <li><a href="#features" class="text-slate-400 hover:text-amber-400 transition-colors text-sm flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[9px] text-amber-500/40"></i>Why Choose Us</a></li>
+          <li><a href="#reviews"  class="text-slate-400 hover:text-amber-400 transition-colors text-sm flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[9px] text-amber-500/40"></i>Client Reviews</a></li>
+          <li><a href="#"         class="text-slate-400 hover:text-amber-400 transition-colors text-sm flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[9px] text-amber-500/40"></i>Wedding Packages</a></li>
+          <li><a href="#"         class="text-slate-400 hover:text-amber-400 transition-colors text-sm flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[9px] text-amber-500/40"></i>Terms &amp; Conditions</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h4 class="text-white font-bold text-[10px] uppercase tracking-[0.2em] mb-5">Contact Us</h4>
+        <ul class="space-y-4">
+          <li class="flex items-start gap-3 text-sm text-slate-400">
+            <i class="fa-solid fa-location-dot text-amber-500 mt-0.5 flex-shrink-0"></i>
+            <span>Abdoun District, Amman,<br>Jordan 11183</span>
+          </li>
+          <li class="flex items-center gap-3 text-sm">
+            <i class="fa-solid fa-phone text-amber-500 flex-shrink-0"></i>
+            <a href="tel:+96279XXXXXXX" class="text-slate-400 hover:text-amber-400 transition-colors">+962 79 XXX XXXX</a>
+          </li>
+          <li class="flex items-center gap-3 text-sm">
+            <i class="fa-brands fa-whatsapp text-amber-500 flex-shrink-0"></i>
+            <a href="https://wa.me/96279XXXXXXX" class="text-slate-400 hover:text-amber-400 transition-colors">WhatsApp Us</a>
+          </li>
+          <li class="flex items-center gap-3 text-sm">
+            <i class="fa-solid fa-envelope text-amber-500 flex-shrink-0"></i>
+            <a href="mailto:info@luxdrive.jo" class="text-slate-400 hover:text-amber-400 transition-colors">info@luxdrive.jo</a>
+          </li>
+          <li class="flex items-center gap-3 text-sm text-slate-400">
+            <i class="fa-solid fa-clock text-amber-500 flex-shrink-0"></i>
+            <span>Daily: 8:00 AM – 10:00 PM</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p class="text-slate-500 text-xs">© 2025 LuxDrive Jordan. All rights reserved.</p>
+      <div class="flex items-center gap-2 text-slate-500 text-xs">
+        <i class="fa-solid fa-lock text-amber-500/40 text-[10px]"></i>
+        Secure bookings via WhatsApp
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════════════
+     BOOKING MODAL
+════════════════════════════════════════════════ -->
+<div id="modal" class="fixed inset-0 z-[200] hidden items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="m-name">
+  <div id="modal-backdrop" class="absolute inset-0 bg-black/75 backdrop-blur-md" onclick="closeModal()"></div>
+
+  <div class="relative bg-slate-900 border border-amber-500/20 rounded-2xl w-full max-w-[640px]
+              max-h-[92vh] overflow-y-auto shadow-[0_20px_80px_rgba(0,0,0,0.7)] z-10">
+
+    <!-- Header -->
+    <div class="sticky top-0 z-10 bg-slate-900/95 backdrop-blur-md border-b border-slate-700/50
+                px-6 py-4 flex items-center justify-between rounded-t-2xl">
+      <div>
+        <h3 id="m-name" class="text-white font-bold text-xl leading-tight">Car Name</h3>
+        <p id="m-cat"   class="text-amber-400 text-xs tracking-wide mt-0.5">Category</p>
+      </div>
+      <button onclick="closeModal()"
+              class="w-9 h-9 bg-slate-800 hover:bg-slate-700 rounded-xl flex items-center justify-center
+                     text-slate-400 hover:text-white transition-all duration-200">
+        <i class="fa-solid fa-xmark text-base"></i>
+      </button>
+    </div>
+
+    <!-- Body -->
+    <div class="p-6">
+
+      <!-- Car image -->
+      <div class="relative rounded-xl overflow-hidden h-52 sm:h-64 bg-slate-800 mb-6">
+        <img id="m-img" src="" alt="Car" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent"></div>
+        <span id="m-badge"
+              class="absolute bottom-4 left-4 bg-amber-500 text-slate-900 text-xs font-black
+                     px-3 py-1.5 rounded-full uppercase tracking-wider badge-glow">
+          Category
+        </span>
+      </div>
+
+      <!-- ── Availability Calendar ── -->
+      <div class="cal-container bg-slate-800/50 border border-slate-700/40 rounded-xl p-4 mb-5">
+
+        <!-- Calendar header -->
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-calendar-days text-amber-400 text-sm"></i>
+            <span class="text-white font-bold text-sm">Check Availability</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <button class="cal-nav" id="cal-prev" onclick="calPrevMonth()" aria-label="Previous month">
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <span id="cal-month-label"
+                  class="text-amber-400 text-xs font-bold min-w-[120px] text-center tracking-wide select-none">
+            </span>
+            <button class="cal-nav" id="cal-next" onclick="calNextMonth()" aria-label="Next month">
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Day grid (populated by JS) -->
+        <div id="cal-grid" class="grid grid-cols-7 gap-1"></div>
+
+        <!-- Selected date label -->
+        <p id="cal-selected-label"
+           class="hidden text-amber-400 text-[11px] font-semibold mt-3 text-center tracking-wide">
+        </p>
+
+        <!-- Legend -->
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 mt-3 pt-3 border-t border-slate-700/40">
+          <div class="flex items-center gap-1.5">
+            <div class="w-3 h-3 rounded" style="background:#f59e0b;"></div>
+            <span class="text-[10px] text-slate-400">Selected</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <div class="w-3 h-3 rounded" style="background:rgba(244,63,94,0.22);border:1px solid rgba(251,113,133,0.4);"></div>
+            <span class="text-[10px] text-slate-400">Reserved</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <div class="w-3 h-3 rounded" style="box-shadow:inset 0 0 0 2px #f59e0b;"></div>
+            <span class="text-[10px] text-slate-400">Today</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <div class="w-3 h-3 rounded bg-slate-600/50"></div>
+            <span class="text-[10px] text-slate-400">Available</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="flex items-center gap-3 mb-5">
+        <div class="flex-1 h-px bg-slate-700/80"></div>
+        <span class="text-amber-400 text-[9px] uppercase tracking-[0.22em] font-bold whitespace-nowrap">Customize Your Booking</span>
+        <div class="flex-1 h-px bg-slate-700/80"></div>
+      </div>
+
+      <!-- Base price -->
+      <div class="flex items-center justify-between bg-slate-800/70 border border-slate-700/50 rounded-xl px-5 py-4 mb-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-amber-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
+            <i class="fa-solid fa-tag text-amber-400"></i>
+          </div>
+          <div>
+            <p class="text-white font-semibold text-sm">Base Rate — Per Day</p>
+            <p class="text-slate-400 text-xs mt-0.5">Standard rental, no extras</p>
+          </div>
+        </div>
+        <div class="text-right flex-shrink-0 ml-4">
+          <span id="m-base" class="text-amber-400 font-black text-2xl">0</span>
+          <span class="text-slate-400 text-sm ml-1">JOD</span>
+        </div>
+      </div>
+
+      <!-- Add-ons label -->
+      <p class="text-[10px] text-slate-400 uppercase tracking-[0.2em] font-semibold mb-3">Optional Add-Ons</p>
+
+      <div class="space-y-3 mb-6">
+        <!-- Chauffeur -->
+        <div id="row-driver" class="addon-row flex items-center justify-between bg-slate-800/50 border border-slate-700/30
+                    hover:border-amber-500/20 rounded-xl px-5 py-4 transition-all duration-200 cursor-pointer"
+             onclick="toggleAddon('driver')">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 bg-amber-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
+              <i class="fa-solid fa-user-tie text-amber-400 text-sm"></i>
+            </div>
+            <div>
+              <p class="text-white text-sm font-semibold">Professional Chauffeur</p>
+              <p class="text-slate-400 text-xs mt-0.5">Uniformed, trained driver</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3 flex-shrink-0 ml-4">
+            <span class="text-amber-400 text-sm font-bold">+30 JOD</span>
+            <div id="tog-driver" class="tog-track" onclick="event.stopPropagation(); toggleAddon('driver')">
+              <span class="tog-thumb"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Decoration -->
+        <div id="row-deco" class="addon-row flex items-center justify-between bg-slate-800/50 border border-slate-700/30
+                    hover:border-amber-500/20 rounded-xl px-5 py-4 transition-all duration-200 cursor-pointer"
+             onclick="toggleAddon('deco')">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 bg-amber-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
+              <i class="fa-solid fa-wand-magic-sparkles text-amber-400 text-sm"></i>
+            </div>
+            <div>
+              <p class="text-white text-sm font-semibold">Premium Car Decoration</p>
+              <p class="text-slate-400 text-xs mt-0.5">Floral &amp; ribbon theme setup</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3 flex-shrink-0 ml-4">
+            <span class="text-amber-400 text-sm font-bold">+25 JOD</span>
+            <div id="tog-deco" class="tog-track" onclick="event.stopPropagation(); toggleAddon('deco')">
+              <span class="tog-thumb"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Extra hours -->
+        <div class="flex items-center justify-between bg-slate-800/50 border border-slate-700/30
+                    hover:border-amber-500/20 rounded-xl px-5 py-4 transition-all duration-200">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 bg-amber-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
+              <i class="fa-solid fa-clock text-amber-400 text-sm"></i>
+            </div>
+            <div>
+              <p class="text-white text-sm font-semibold">Extra Hours</p>
+              <p class="text-slate-400 text-xs mt-0.5">+10 JOD per additional hour</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3 flex-shrink-0 ml-4">
+            <span id="hours-price" class="text-amber-400 text-sm font-bold min-w-[52px] text-right">+0 JOD</span>
+            <div class="flex items-center gap-1 bg-slate-700/80 rounded-xl px-2 py-1.5">
+              <button onclick="changeHours(-1)" class="w-7 h-7 flex items-center justify-center text-slate-300 hover:text-amber-400 transition-colors active:scale-90 duration-150 rounded-lg hover:bg-slate-600">
+                <i class="fa-solid fa-minus text-[10px]"></i>
+              </button>
+              <span id="hours-val" class="text-white font-black text-sm w-5 text-center select-none">0</span>
+              <button onclick="changeHours(1)" class="w-7 h-7 flex items-center justify-center text-slate-300 hover:text-amber-400 transition-colors active:scale-90 duration-150 rounded-lg hover:bg-slate-600">
+                <i class="fa-solid fa-plus text-[10px]"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Total -->
+      <div class="bg-gradient-to-br from-amber-500/10 to-amber-700/5 border border-amber-500/25 rounded-2xl px-5 py-5 mb-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-slate-200 font-semibold text-sm">Total Estimated Price</p>
+            <p id="breakdown" class="text-slate-400 text-xs mt-1 leading-relaxed">Base only</p>
+          </div>
+          <div class="text-right ml-6">
+            <div class="flex items-baseline gap-1.5 justify-end">
+              <span id="m-total" class="text-4xl font-black text-amber-400 transition-all duration-300">0</span>
+              <span class="text-slate-300 text-sm font-medium">JOD</span>
+            </div>
+            <p class="text-slate-500 text-[10px] mt-1">/ day estimate</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTAs -->
+      <div class="flex flex-col sm:flex-row gap-3">
+        <button onclick="bookWhatsApp()"
+                class="flex-1 bg-green-500 hover:bg-green-400 text-white font-black py-4 px-6 rounded-xl text-sm
+                       tracking-wide transition-all duration-300 hover:shadow-xl hover:shadow-green-500/25
+                       hover:-translate-y-0.5 flex items-center justify-center gap-2.5">
+          <i class="fa-brands fa-whatsapp text-xl"></i>
+          Confirm via WhatsApp
+        </button>
+        <button onclick="closeModal()"
+                class="sm:w-auto bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white
+                       font-semibold py-4 px-6 rounded-xl text-sm tracking-wide transition-all duration-300">
+          Cancel
+        </button>
+      </div>
+
+      <p class="text-slate-500 text-[10px] text-center mt-4 leading-relaxed">
+        <i class="fa-solid fa-circle-info mr-1 text-amber-500/50"></i>
+        Final price confirmed upon booking. All amounts in Jordanian Dinar (JOD).
+      </p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ── Toast ── -->
+<div id="toast" class="fixed bottom-6 right-6 z-[300] opacity-0 translate-y-6 pointer-events-none">
+  <div class="bg-green-500 text-white text-sm font-semibold px-5 py-3.5 rounded-xl shadow-2xl flex items-center gap-3">
+    <i class="fa-solid fa-circle-check text-lg"></i>
+    <span id="toast-msg">Done!</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     WHATSAPP FLOATING BUTTON
+════════════════════════════════════════════════ -->
+<div id="wa-fab" class="fixed bottom-6 right-6 z-[150] flex flex-col items-end gap-3">
+
+  <!-- Tooltip -->
+  <div id="wa-tooltip"
+       class="opacity-0 translate-x-4 pointer-events-none
+              bg-white text-slate-800 text-sm font-semibold
+              px-4 py-2.5 rounded-2xl shadow-xl border border-slate-100
+              whitespace-nowrap transition-all duration-300 relative">
+    Chat with us on WhatsApp
+    <span class="absolute right-5 -bottom-[6px] w-3 h-3 bg-white border-r border-b border-slate-100 rotate-45 block"></span>
+  </div>
+
+  <!-- Button -->
+  <a href="https://wa.me/96279XXXXXXX?text=Hello%20LuxDrive%20Jordan!%20I%27m%20interested%20in%20renting%20a%20car."
+     target="_blank" rel="noopener noreferrer"
+     id="wa-btn"
+     aria-label="Chat on WhatsApp"
+     class="relative w-14 h-14 bg-[#25D366] hover:bg-[#20b858]
+            rounded-full flex items-center justify-center
+            shadow-[0_6px_30px_rgba(37,211,102,0.55)]
+            hover:shadow-[0_8px_40px_rgba(37,211,102,0.70)]
+            hover:scale-110 active:scale-95 transition-all duration-300">
+    <span class="absolute inset-0 rounded-full bg-[#25D366] opacity-40 animate-ping"></span>
+    <span class="absolute inset-0 rounded-full bg-[#25D366] opacity-20 animate-ping" style="animation-delay:0.4s;animation-duration:1.8s;"></span>
+    <i class="fa-brands fa-whatsapp text-white text-[26px] relative z-10"></i>
+  </a>
+</div>
+
+
+<!-- Back to Top -->
+<button id="back-to-top"
+        onclick="window.scrollTo({top:0,behavior:'smooth'})"
+        aria-label="Back to top"
+        class="fixed bottom-6 left-6 z-[150] w-12 h-12 bg-amber-500 hover:bg-amber-400
+               text-slate-900 rounded-full flex items-center justify-center
+               shadow-lg shadow-amber-500/30 hover:shadow-amber-500/50
+               opacity-0 translate-y-4 pointer-events-none
+               hover:scale-110 active:scale-95">
+  <i class="fa-solid fa-chevron-up text-sm font-black"></i>
+</button>
+
+<!-- Main JavaScript -->
+<script src="script.js"></script>
+</body>
+</html>
